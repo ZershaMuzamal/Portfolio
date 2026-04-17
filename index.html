@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zersha Muzamal | Frontend Developer</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="logo">ZM</a>
+      <nav class="navbar">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Frontend Developer</span>
+          <h1>Designing modern interfaces that look great and feel effortless.</h1>
+          <p>I turn ideas into responsive web experiences using HTML, CSS, and JavaScript. My focus is on clean design, strong performance, and accessible layouts.</p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">Explore Projects</a>
+            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <p class="hero-card-title">Latest work</p>
+          <h2>Car Zone Website</h2>
+          <p>A responsive showroom landing page built with a polished user experience and fast mobile performance.</p>
+          <a href="https://zershamuzamal.github.io/Car-Zone/" target="_blank" rel="noreferrer" class="card-link">View live demo</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-label">Featured work</p>
+          <h2>Projects</h2>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <h3>Car Zone Website</h3>
+            <p>Responsive showroom website showcasing vehicles with clean layouts, modern typography, and mobile-first design.</p>
+            <p><strong>Tech:</strong> HTML, CSS</p>
+            <a href="https://zershamuzamal.github.io/Car-Zone/" target="_blank" rel="noreferrer">Live Demo</a>
+          </article>
+
+          <article class="project-card">
+            <h3>Clothing Brand Website</h3>
+            <p>A clothing brand website showcasing frontend coding skills with modern design and responsive layouts.</p>
+            <p><strong>Tech:</strong> HTML, CSS, JavaScript</p>
+            <a href="https://zershamuzamal.github.io/" target="_blank" rel="noreferrer">Live Demo</a>
+          </article>
+
+          <article class="project-card">
+            <h3>Coffee Website</h3>
+            <p>A demo coffee website built to demonstrate frontend development capabilities and design skills.</p>
+            <p><strong>Tech:</strong> HTML, CSS , JavaScript</p>
+            <a href="https://zershamuzamal.github.io/coffee_website/" target="_blank" rel="noreferrer">Live Demo</a>
+          </article>
+
+          <article class="project-card">
+            <h3>Portfolio Redesign</h3>
+            <p>Personal portfolio that highlights projects, skills, and contact information with a polished, modern presentation.</p>
+            <p><strong>Tech:</strong> HTML, CSS, JavaScript</p>
+            <a href="#contact">Learn More</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="skills">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-label">What I bring</p>
+          <h2>Skills</h2>
+        </div>
+
+        <div class="skills-list">
+          <span>HTML5</span>
+          <span>CSS3</span>
+          <span>JavaScript</span>
+          <span>Responsive Design</span>
+          <span>Web Accessibility</span>
+          <span>Figma</span>
+          <span>Canva</span>
+          <span>Git</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container about-grid">
+        <div>
+          <div class="section-heading">
+            <p class="section-label">About me</p>
+            <h2>Building clear digital experiences</h2>
+          </div>
+          <p>I am a frontend developer studying at Bath Spa University RAK, with a passion for creating interfaces that are both visually engaging and easy to use. My projects combine clean layouts, strong typography, and responsive behavior across devices.</p>
+          <p>I enjoy working on design-driven websites and improving usability through thoughtful details, performance optimizations, and accessible components.</p>
+        </div>
+        <div class="about-stats">
+          <div>
+            <span>4+</span>
+            <p>Projects completed</p>
+          </div>
+          <div>
+            <span>HTML, CSS, JS</span>
+            <p>Core technologies</p>
+          </div>
+          <div>
+            <span>University student</span>
+            <p>Bath Spa University RAK</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-label">Let's connect</p>
+          <h2>Contact</h2>
+        </div>
+        <div class="contact-content">
+          <div class="contact-info">
+            <p>Interested in collaborating? Send me a message and let's talk about your next web project.</p>
+            <div class="contact-details">
+              <p><strong>Email:</strong> <a href="mailto:zershamuzamal@gmail.com">zershamuzamal@gmail.com</a></p>
+              <p><strong>GitHub:</strong> <a href="https://github.com/zershamuzamal" target="_blank" rel="noreferrer">github.com/zershamuzamal</a></p>
+            </div>
+          </div>
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button class="back-to-top" aria-label="Back to top">
+    ↑
+  </button>
+
+  <button class="theme-toggle" aria-label="Toggle theme">
+    🌙
+  </button>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Zersha Muzamal. Built with HTML, CSS, and JavaScript.</p>
+    </div>
+  </footer>
+</body>
+</html>
