@@ -7,7 +7,7 @@ const contactForm = document.getElementById('contactForm');
 const heroTitle = document.querySelector('.hero h1');
 
 // Typing Effect
-function typeWriter(element, text, speed = 100) {
+function typeWriter(element, text, speed = 50) {
   let i = 0;
   element.textContent = '';
   element.classList.add('typing');
@@ -41,16 +41,16 @@ function toggleMobileMenu() {
   mobileMenuToggle.classList.toggle('active');
 }
 
-// Back to Top
+// Back to Top Visibility
 function toggleBackToTop() {
-  if (window.pageYOffset > 300) {
+  if (window.scrollY > 300) {
     backToTopBtn.classList.add('show');
   } else {
     backToTopBtn.classList.remove('show');
   }
 }
 
-// Theme Toggle
+// Theme Toggle Mechanics
 function toggleTheme() {
   document.body.classList.toggle('dark-theme');
   const isDark = document.body.classList.contains('dark-theme');
@@ -58,7 +58,7 @@ function toggleTheme() {
   localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
 
-// Load Theme
+// Load Theme State
 function loadTheme() {
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme === 'dark') {
@@ -67,7 +67,7 @@ function loadTheme() {
   }
 }
 
-// Intersection Observer for Animations
+// Intersection Observer for Scroll Animations
 const observerOptions = {
   threshold: 0.1,
   rootMargin: '0px 0px -50px 0px'
@@ -81,14 +81,20 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
-// Form Validation and Submission
+// Email Regex Validation Helper
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+// Form Validation and Asynchronous Submission to Formspree
 function handleFormSubmit(e) {
   e.preventDefault();
 
   const formData = new FormData(contactForm);
   const data = Object.fromEntries(formData);
 
-  // Simple validation
+  // Validation
   if (!data.name || !data.email || !data.message) {
     alert('Please fill in all fields.');
     return;
@@ -99,37 +105,48 @@ function handleFormSubmit(e) {
     return;
   }
 
-  // Simulate form submission (in a real app, you'd send to a server)
-  alert('Thank you for your message! I\'ll get back to you soon.');
-  contactForm.reset();
+  // Submit via AJAX Fetch API to Formspree
+  fetch(contactForm.action, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      alert("Thank you for your message! I'll get back to you soon.");
+      contactForm.reset();
+    } else {
+      alert('Oops! There was a problem submitting your form. Please try again.');
+    }
+  })
+  .catch(error => {
+    alert('Oops! There was a network connectivity problem. Please try again.');
+  });
 }
 
-function isValidEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
-
-// Event Listeners
+// Global Lifecycle Initialization
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize typing effect
-  const originalText = heroTitle.textContent;
-  typeWriter(heroTitle, originalText, 50);
+  // Initialize typing effect safely
+  if (heroTitle) {
+    const originalText = heroTitle.textContent;
+    typeWriter(heroTitle, originalText, 50);
+  }
 
-  // Add fade-in class to sections
+  // Setup elements for scroll visibility animations
   const sections = document.querySelectorAll('section');
   sections.forEach(section => {
     section.classList.add('fade-in');
     observer.observe(section);
   });
 
-  // Add fade-in to project cards
   const projectCards = document.querySelectorAll('.project-card');
   projectCards.forEach(card => {
     card.classList.add('fade-in');
     observer.observe(card);
   });
 
-  // Add stagger animation to skills
   const skillItems = document.querySelectorAll('.skills-list span');
   skillItems.forEach((item, index) => {
     item.classList.add('fade-in');
@@ -137,49 +154,50 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(item);
   });
 
-  // Load saved theme
+  // Theme Restoration
   loadTheme();
 });
 
-// Navigation links smooth scroll
+// Event Triggers
 document.querySelectorAll('.navbar a, .hero-actions a').forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
     const target = link.getAttribute('href');
     smoothScroll(target);
 
-    // Close mobile menu after clicking
+    // Auto-collapse mobile tray when navigation selection occurs
     if (navbar.classList.contains('active')) {
       toggleMobileMenu();
     }
   });
 });
 
-// Mobile menu toggle
 if (mobileMenuToggle) {
   mobileMenuToggle.addEventListener('click', toggleMobileMenu);
 }
 
-// Back to top
 window.addEventListener('scroll', toggleBackToTop);
-backToTopBtn.addEventListener('click', () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
+
+if (backToTopBtn) {
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   });
-});
+}
 
-// Theme toggle
-themeToggleBtn.addEventListener('click', toggleTheme);
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', toggleTheme);
+}
 
-// Contact form
 if (contactForm) {
   contactForm.addEventListener('submit', handleFormSubmit);
 }
 
-// Close mobile menu when clicking outside
+// Click outside helper to dismiss navigation drawer on mobile layouts
 document.addEventListener('click', (e) => {
-  if (!navbar.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+  if (navbar && mobileMenuToggle && !navbar.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
     navbar.classList.remove('active');
     mobileMenuToggle.classList.remove('active');
   }
